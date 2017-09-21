@@ -24,3 +24,5 @@ hs_err_pid*
 /ZAlgorithm/build/
 /ZAlgorithm/dist/
 /Homework2/Smith-Waterman/nbproject/private/
+/Homework2/Smith-Waterman/build/
+/Homework2/Smith-Waterman/dist/

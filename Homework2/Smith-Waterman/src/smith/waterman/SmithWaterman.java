@@ -11,7 +11,6 @@ package smith.waterman;
  * @author John Trapp, Brendan Tracey, and Samuel Shissler
  */
 public class SmithWaterman {
-
     private String s, t;
     private int score;
 
@@ -55,6 +54,8 @@ public class SmithWaterman {
     ////////////////////////////////////////////////////////////////////////////
     //The actual sort methods
     ////////////////////////////////////////////////////////////////////////////
+    
+    
     @Override
     public String toString() {
         String output = "";
