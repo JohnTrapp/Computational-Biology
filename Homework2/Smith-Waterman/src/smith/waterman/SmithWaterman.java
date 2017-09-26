@@ -15,12 +15,13 @@ public class SmithWaterman {
     private int score;
 
     public SmithWaterman() {
-
+        score = 0;
     }
 
     public SmithWaterman(String sIn, String tIn) {
         s = sIn;
         t = tIn;
+        score = 0;
     }
 
     public String getS() {
@@ -47,20 +48,21 @@ public class SmithWaterman {
         score = scoreIn;
     }
 
-    public void sort() {
+    public void align() {
         //Start the sort
     }
 
     ////////////////////////////////////////////////////////////////////////////
-    //The actual sort methods
+    //The actual alignment methods
     ////////////////////////////////////////////////////////////////////////////
     
     
     @Override
     public String toString() {
         String output = "";
-        //Add alignment
-        output += getScore();
+        output += ("S: " + s + "\n");
+        output += ("T: " + t + "\n");
+        output += ("Score: " + getScore() + "\n");
 
         return output;
     }
