@@ -12,6 +12,7 @@ package smith.waterman;
  */
 public class SmithWaterman {
     private String s, t;
+    private int[][] mat;
     private int score;
 
     public SmithWaterman() {
@@ -21,7 +22,8 @@ public class SmithWaterman {
     public SmithWaterman(String sIn, String tIn) {
         s = sIn;
         t = tIn;
-        score = 0;
+        mat = new int[t.length()+1][s.length()+1];
+	score = 0;
     }
 
     public String getS() {
@@ -49,9 +51,86 @@ public class SmithWaterman {
     }
 
     public void align() {
-        //Start the sort
+	fillTable();
+	printTable();
+        score = traceback();
     }
 
+    private void fillTable(){
+	for(int i=0; i<=t.length(); i++){
+	    for(int j=0; j<=s.length(); j++){
+		if(i==0 || j==0)
+		    mat[i][j] = 0;
+                else{
+		    if(s.charAt(j-1)==t.charAt(i-1))
+			mat[i][j] = Math.max(Math.max(mat[i-1][j]-1, mat[i][j-1]-1), Math.max(mat[i-1][j-1]+2, 0));
+		    else
+			mat[i][j] = Math.max(Math.max(mat[i-1][j]-1, mat[i][j-1]-1), Math.max(mat[i-1][j-1]-1, 0));
+		}
+	    }
+        }
+    }
+    
+    private int traceback(){
+        int highi =0, highj =0;
+        String sTemp = "", tTemp = "";
+        for(int i=0; i<=t.length(); i++){
+            for(int j=0; j<=s.length(); j++){
+                if(mat[i][j]>mat[highi][highj]){
+                    highi = i; 
+                    highj = j;
+                }            
+            }
+        }
+        boolean notZero = true;
+        int i = highi;
+        int j = highj;
+        while(notZero){
+            score += mat[i][j];
+            mat[i][j] = -1;
+            if(mat[i-1][j-1]==0){
+                tTemp = t.charAt(i-1)+tTemp;
+                sTemp = s.charAt(j-1)+sTemp;
+                notZero = false;
+            }else{
+                //Diagonal
+                if(mat[i-1][j-1]== Math.max(Math.max(mat[i][j-1], mat[i-1][j]), mat[i-1][j-1])){
+                    tTemp = t.charAt(i-1) + tTemp;
+                    sTemp = s.charAt(j-1) + sTemp;
+                    i -= 1;
+                    j -= 1;
+                }
+                //Up
+                else if(mat[i-1][j]== Math.max(Math.max(mat[i][j-1], mat[i-1][j]), mat[i-1][j-1])){
+                    tTemp = t.charAt(i-1)+tTemp;
+                    sTemp = "_" + sTemp;
+                    i -= 1;
+                }
+                //Left
+                else{
+                    tTemp = "_" + tTemp;
+                    sTemp = s.charAt(j-1)+sTemp;
+                    j -= 1;
+                }
+            }
+            //printTable();
+            //System.out.println("T: " + tTemp);
+            //System.out.println("S: " + sTemp);
+        }
+        t = tTemp;
+        s = sTemp;
+        return score;
+    }
+
+    private void printTable(){
+	for(int i=0; i<=t.length(); i++){
+	    System.out.print("\n");
+	    for(int j=0; j<=s.length(); j++){
+		System.out.print(" "+mat[i][j]);
+	    }
+	}
+        System.out.println();
+    }
     ////////////////////////////////////////////////////////////////////////////
     //The actual alignment methods
     ////////////////////////////////////////////////////////////////////////////
