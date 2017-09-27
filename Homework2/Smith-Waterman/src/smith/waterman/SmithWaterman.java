@@ -58,7 +58,7 @@ public class SmithWaterman {
     //The method that starts it all.
     public void align() {
         fillTable();    //Fill out that table
-        printTable();   //Print out that table
+        //printTable();   //Print out that table
         score = traceback();    //donde estas score?
     }
 
@@ -143,10 +143,12 @@ public class SmithWaterman {
     @Override
     public String toString() {
         String output = "";
-        output += ("S: " + s + "\n");
-        output += ("T: " + t + "\n");
-        output += ("Score: " + getScore() + "\n");
+        output += ("S: " + s + "\n\n");
+        output += ("T: " + t + "\n\n");
+        output += ("Score: " + getScore() + "\n\n");
 
-        return output;
+        String outputModified = output.replaceAll("(.{100})", "$1\n");
+
+        return outputModified;
     }
 }
