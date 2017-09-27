@@ -40,8 +40,10 @@ public class Driver extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Smith Waterman Algorithm (John, Tracey, and Sam)");
 
+        textFieldS.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
         textFieldS.setText("String S");
 
+        textFieldT.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
         textFieldT.setText("String T");
 
         goButton.setText("GO!");
@@ -54,6 +56,7 @@ public class Driver extends javax.swing.JFrame {
 
         textAreaOutput.setEditable(false);
         textAreaOutput.setColumns(20);
+        textAreaOutput.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
         textAreaOutput.setRows(5);
         jScrollPane2.setViewportView(textAreaOutput);
 
@@ -82,7 +85,7 @@ public class Driver extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(goButton, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                .addComponent(goButton, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
