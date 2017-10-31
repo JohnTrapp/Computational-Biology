@@ -1,0 +1,22 @@
+IFL
+1$abracadabra
+2a$abracadabr
+3abra$abracad
+4abracadabra$
+5acadabra$abr
+6adabra$abrac
+7bra$abracada
+8bracadabra$a
+9cadabra$abra
+10dabra$abraca
+11ra$abracadab
+12racadabra$ab
+
+ a r d $ r c a a a a b b
+ 1 2 3 4 5 6 7 8 9 101112
+$0 0 0 1 1 1 1 1 1 1 1 1
+a1 1 1 1 1 1 2 3 4 5 5 5
+b0 0 0 0 0 0 0 0 0 0 1 2
+c0 0 0 0 0 1 1 1 1 1 1 1
+d0 0 1 1 1 1 1 1 1 1 1 1
+r0 1 1 1 2 2 2 2 2 2 2 2
