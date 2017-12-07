@@ -5,6 +5,7 @@
  */
 package homework5;
 
+import java.util.ArrayList;
 import java.util.EmptyStackException;
 
 /**
@@ -12,7 +13,7 @@ import java.util.EmptyStackException;
  * @author Samuel Shissler, Brendan Tracey, and John Trapp
  */
 public class PhylogenyPrediction {
-    private String dnaStrings[];
+    private ArrayList<String> dnaStrands;
     
     /**
      * Method for when you want to load the strings later
@@ -23,23 +24,23 @@ public class PhylogenyPrediction {
     
     /**
      * Method for when you have the string right now
-     * @param in Array of DNA Strings
+     * @param in ArrayList of DNA Strings
      */
-    public PhylogenyPrediction(String in[]){
-        dnaStrings = in;
+    public PhylogenyPrediction(ArrayList<String> in){
+        dnaStrands = in;
     }
     
-    public void setDNAStrings(String in[]){
-        dnaStrings = in;
+    public void setDNAStrings(ArrayList<String> in){
+        dnaStrands = in;
     }
     
-    public String[] getDNAStrings(){
-        return dnaStrings;
+    public ArrayList<String> getDNAStrings(){
+        return dnaStrands;
     }
     
     public void doTheStuffWithTheThings(){
         //Is array empty
-        if(dnaStrings == null){
+        if(dnaStrands == null){
             throw new EmptyStackException();
         }
     }

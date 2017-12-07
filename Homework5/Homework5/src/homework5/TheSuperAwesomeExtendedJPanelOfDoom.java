@@ -5,11 +5,23 @@
  */
 package homework5;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author Samuel Shissler, Brendan Tracey, and John Trapp
  */
 public class TheSuperAwesomeExtendedJPanelOfDoom extends javax.swing.JPanel {
+
+    private File file;
+    private ArrayList<String> dnaStrands;
 
     /**
      * Creates new form TheSuperAwesomeExtendedJPanelOfDoom
@@ -27,30 +39,92 @@ public class TheSuperAwesomeExtendedJPanelOfDoom extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFileChooser2 = new javax.swing.JFileChooser();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jFileChooser1 = new javax.swing.JFileChooser();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jSplitPane2 = new javax.swing.JSplitPane();
+        jButton1 = new javax.swing.JButton();
 
-        setMaximumSize(new java.awt.Dimension(1000, 1000));
-        setMinimumSize(new java.awt.Dimension(1000, 1000));
+        setMaximumSize(new java.awt.Dimension(1000, 950));
+        setMinimumSize(new java.awt.Dimension(1000, 950));
         setName(""); // NOI18N
 
-        jFileChooser2.setControlButtonsAreShown(false);
+        jTabbedPane1.setMaximumSize(new java.awt.Dimension(1000, 950));
+        jTabbedPane1.setMinimumSize(new java.awt.Dimension(1000, 950));
+
+        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        jFileChooser1.setAcceptAllFileFilterUsed(false);
+        jFileChooser1.setFileFilter(new FileNameExtensionFilter("TEXT FILES", "txt", "text", "*.txt"));
+        jFileChooser1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFileChooser1ActionPerformed(evt);
+            }
+        });
+        jSplitPane1.setLeftComponent(jFileChooser1);
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Please choose the .txt file above and select \"Open.\"");
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jSplitPane1.setRightComponent(jScrollPane1);
+
+        jTabbedPane1.addTab("Input", jSplitPane1);
+
+        jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        jButton1.setText("START Phylogeny Prediction");
+        jButton1.setEnabled(false);
+        jSplitPane2.setTopComponent(jButton1);
+
+        jTabbedPane1.addTab("Output", jSplitPane2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jFileChooser2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 599, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 950, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
+        file = jFileChooser1.getSelectedFile();
+        dnaStrands = new ArrayList<>();
+        
+        try {
+            Scanner sc = new Scanner(file);
+            while (sc.hasNextLine()) {
+                dnaStrands.add(sc.nextLine());
+            }
+            jButton1.setEnabled(true);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TheSuperAwesomeExtendedJPanelOfDoom.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        String tempString = "";
+        for (String strand : dnaStrands) {
+            tempString += strand;
+            tempString += "\n";
+        }
+        jTextArea1.setText(tempString);
+    }//GEN-LAST:event_jFileChooser1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFileChooser jFileChooser2;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JSplitPane jSplitPane2;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

@@ -33,12 +33,14 @@ public class Driver {
         }
         
         JFrame frame = new JFrame("The Best Implemtation of Homework 5 Ever");
-        frame.setSize(1000, 1000);
+        frame.setSize(1000, 950);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.getContentPane().add(new TheSuperAwesomeExtendedJPanelOfDoom());
 
+        frame.pack();
+        frame.setResizable(false);
         frame.setVisible(true);
     }
 
