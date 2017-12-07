@@ -43,9 +43,11 @@ public class TheSuperAwesomeExtendedJPanelOfDoom extends javax.swing.JPanel {
         jSplitPane1 = new javax.swing.JSplitPane();
         jFileChooser1 = new javax.swing.JFileChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        inputTextArea = new javax.swing.JTextArea();
         jSplitPane2 = new javax.swing.JSplitPane();
-        jButton1 = new javax.swing.JButton();
+        startButton = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        outputTextArea = new javax.swing.JTextArea();
 
         setMaximumSize(new java.awt.Dimension(1000, 950));
         setMinimumSize(new java.awt.Dimension(1000, 950));
@@ -65,11 +67,11 @@ public class TheSuperAwesomeExtendedJPanelOfDoom extends javax.swing.JPanel {
         });
         jSplitPane1.setLeftComponent(jFileChooser1);
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Please choose the .txt file above and select \"Open.\"");
-        jScrollPane1.setViewportView(jTextArea1);
+        inputTextArea.setEditable(false);
+        inputTextArea.setColumns(20);
+        inputTextArea.setRows(5);
+        inputTextArea.setText("Please choose the .txt file above and select \"Open.\"");
+        jScrollPane1.setViewportView(inputTextArea);
 
         jSplitPane1.setRightComponent(jScrollPane1);
 
@@ -77,9 +79,21 @@ public class TheSuperAwesomeExtendedJPanelOfDoom extends javax.swing.JPanel {
 
         jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        jButton1.setText("START Phylogeny Prediction");
-        jButton1.setEnabled(false);
-        jSplitPane2.setTopComponent(jButton1);
+        startButton.setText("START Phylogeny Prediction");
+        startButton.setEnabled(false);
+        startButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startButtonActionPerformed(evt);
+            }
+        });
+        jSplitPane2.setTopComponent(startButton);
+
+        outputTextArea.setEditable(false);
+        outputTextArea.setColumns(20);
+        outputTextArea.setRows(5);
+        jScrollPane3.setViewportView(outputTextArea);
+
+        jSplitPane2.setRightComponent(jScrollPane3);
 
         jTabbedPane1.addTab("Output", jSplitPane2);
 
@@ -98,13 +112,13 @@ public class TheSuperAwesomeExtendedJPanelOfDoom extends javax.swing.JPanel {
     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
         file = jFileChooser1.getSelectedFile();
         dnaStrands = new ArrayList<>();
-        
+
         try {
             Scanner sc = new Scanner(file);
             while (sc.hasNextLine()) {
                 dnaStrands.add(sc.nextLine());
             }
-            jButton1.setEnabled(true);
+            startButton.setEnabled(true);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(TheSuperAwesomeExtendedJPanelOfDoom.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -114,17 +128,32 @@ public class TheSuperAwesomeExtendedJPanelOfDoom extends javax.swing.JPanel {
             tempString += strand;
             tempString += "\n";
         }
-        jTextArea1.setText(tempString);
+        inputTextArea.setText(tempString);
     }//GEN-LAST:event_jFileChooser1ActionPerformed
+
+    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
+        //Disable the button
+        startButton.setEnabled(false);
+        
+        //Send of the data!
+        PhylogenyPrediction predictorOMatic = new PhylogenyPrediction(dnaStrands);
+        predictorOMatic.doTheStuffWithTheThings();
+
+        //Print out the data
+        outputTextArea.setText(predictorOMatic.printOutput());
+        //TODO: Print out the tree
+    }//GEN-LAST:event_startButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextArea inputTextArea;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea outputTextArea;
+    private javax.swing.JButton startButton;
     // End of variables declaration//GEN-END:variables
 }

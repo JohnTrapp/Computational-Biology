@@ -13,46 +13,62 @@ import java.util.EmptyStackException;
  * @author Samuel Shissler, Brendan Tracey, and John Trapp
  */
 public class PhylogenyPrediction {
+
     private ArrayList<String> dnaStrands;
-    
+    private String outputString;
+
     /**
-     * Method for when you want to load the strings later
+     * Method for when you want to load the strings later.
      */
-    public PhylogenyPrediction(){
-        
+    public PhylogenyPrediction() {
+
     }
-    
+
     /**
-     * Method for when you have the string right now
+     * Method for when you have the string right now.
+     *
      * @param in ArrayList of DNA Strings
      */
-    public PhylogenyPrediction(ArrayList<String> in){
+    public PhylogenyPrediction(ArrayList<String> in) {
         dnaStrands = in;
     }
-    
-    public void setDNAStrings(ArrayList<String> in){
+
+    public void setDNAStrings(ArrayList<String> in) {
         dnaStrands = in;
     }
-    
-    public ArrayList<String> getDNAStrings(){
+
+    public ArrayList<String> getDNAStrings() {
         return dnaStrands;
     }
-    
-    public void doTheStuffWithTheThings(){
+
+    public void doTheStuffWithTheThings() {
         //Is array empty
-        if(dnaStrands == null){
+        if (dnaStrands == null) {
             throw new EmptyStackException();
         }
+
+        //TODO: Actual assignment goes here.
+        //Add to string "outputString" when you want it to be printed.
     }
-    
+
     /**
-     * Prints the tree generated
+     * Returns the generated tree.
+     *
      * @return Formatted output of tree
      */
-    public String printTree(){
+    public String printTree() {
         String output = "";
-        
-        
+
         return output;
+    }
+
+    /**
+     * Returns the distance matrix, binary tree "T," and Fitch's algorithm
+     * outputs.
+     *
+     * @return String of data collected
+     */
+    public String printOutput() {
+        return outputString;
     }
 }
