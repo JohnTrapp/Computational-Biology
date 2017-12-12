@@ -6,6 +6,7 @@
 package homework5;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EmptyStackException;
 
 /**
@@ -18,14 +19,14 @@ public class PhylogenyPrediction {
     private String outputString;
 
     /**
-     * Method for when you want to load the strings later.
+     * Constructor for when you want to load the strings later.
      */
     public PhylogenyPrediction() {
         
     }
 
     /**
-     * Method for when you have the string right now.
+     * Constructor for when you have the string right now.
      *
      * @param in ArrayList of DNA Strings
      */
@@ -49,6 +50,8 @@ public class PhylogenyPrediction {
 
         //TODO: Actual assignment goes here.
         //Add to string "outputString" when you want it to be printed.
+        
+        //Do the alignment boogie
         int[][] D = new int[dnaStrands.size()][dnaStrands.size()];
         for(int i=0; i < dnaStrands.size(); i++){
             for(int j = 0; j<dnaStrands.size(); j++){
@@ -57,6 +60,12 @@ public class PhylogenyPrediction {
                 D[i][j] = s.getScore();
             }
         }
+        
+        //Add the pairwise distance matrix to the print buffer
+        outputString += "Pairwise Distance Matrix\n\n";
+        outputString += Arrays.deepToString(D).replace("], ", "]\n");
+        
+        
         for(int i=0; i<D.length; i++){
             for(int j=0; j<D.length; j++){
                 
