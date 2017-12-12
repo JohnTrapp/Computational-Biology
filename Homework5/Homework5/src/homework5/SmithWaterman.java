@@ -4,7 +4,7 @@
  * For the fall 2017 semester.
  * As this is a undergrad course, usage elsware is ill-advised.
  */
-package smith.waterman;
+package homework5;
 
 /**
  *
